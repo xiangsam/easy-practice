@@ -1,23 +1,20 @@
 #include <stdio.h>
-#include <stdlib.h>
-int cmp(const void *a,const void *b){
-	return(*(int*)a-*(int*)b);
-}
+#include <stdbool.h>		//布尔类型 
 int main()
 {
-	int i,n,a[100];
+	int a[100001],n,i,j,count;
+	bool b[100001];
 	scanf("%d",&n);
 	for(i=0;i<n;++i){
 		scanf("%d",&a[i]);
-	}qsort(a,n,sizeof(a[0]),cmp);
-	int k,num=0,j;
-	for(k=2;k<n;k++){
-		for(i=0;i<k-1;++i){
-			for(j=i+1;j<k;++j){
-				if(a[i]+a[j]==a[k])
-					num++;
+		b[a[i]]=true;		//每个数不同，所以可以如此处理 
+	}for(i=0;i<n-1;++i){
+		for(j=i+1;j<n;++j){
+			if(b[a[i]+a[j]]){
+				++count;
+				b[a[i]+a[j]]=false;		//避免重复计数同一个和 
 			}
 		}
-	}printf("%d",num);
+	}printf("%d",count);
 	return 0;
 }
