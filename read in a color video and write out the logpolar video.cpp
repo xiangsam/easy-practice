@@ -10,7 +10,8 @@ int main(int argc, char** argv)
 	double fps = capture.get(CAP_PROP_FPS);
 	Size size((int)capture.get(CAP_PROP_FRAME_WIDTH), (int)capture.get(CAP_PROP_FRAME_HEIGHT));
 	VideoWriter writer;
-	writer.open("My video", CAP_OPENCV_MJPEG, fps, size);
+	\\直接保存到D盘
+	writer.open("D:/LOGPOLAR.AVI", CAP_OPENCV_MJPEG, fps, size);
 	Mat logpolar_frame, bgr_frame;
 	while (1) {
 		capture >> bgr_frame;
